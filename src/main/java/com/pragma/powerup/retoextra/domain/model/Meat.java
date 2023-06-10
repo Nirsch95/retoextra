@@ -1,14 +1,14 @@
 package com.pragma.powerup.retoextra.domain.model;
 
 public class Meat extends Dish {
-    private int grams;
+    private Integer grams;
 
     public Meat() {
         super();
     }
 
-    public Meat(Long id, int grams) {
-        super(id);
+    public Meat(Long id, String dishType, Integer grams) {
+        super(id, dishType);
         this.grams = grams;
     }
 
@@ -16,7 +16,7 @@ public class Meat extends Dish {
         return grams;
     }
 
-    public void setGrams(int grams) {
+    public void setGrams(Integer grams) {
         this.grams = grams;
     }
 }

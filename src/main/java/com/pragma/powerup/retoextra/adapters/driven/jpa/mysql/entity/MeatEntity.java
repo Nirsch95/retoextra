@@ -14,5 +14,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MeatEntity extends DishEntity {
-    private int grams;
+    private Integer grams;
 }

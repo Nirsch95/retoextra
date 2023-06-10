@@ -7,8 +7,8 @@ public class Dessert extends Dish {
         super();
     }
 
-    public Dessert(Long id, String typeDessert) {
-        super(id);
+    public Dessert(Long id, String dishType, String typeDessert) {
+        super(id, dishType);
         this.typeDessert = typeDessert;
     }
 
