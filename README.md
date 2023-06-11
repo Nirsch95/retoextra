@@ -34,7 +34,7 @@ To get a local copy up and running follow these steps.
 1. Clone the repository
 2. Change directory
    ```sh
-   cd power-up-arquetipo-v3
+   cd reto-extra
    ```
 3. Create a new database in MySQL called retoextra
 4. Update the database connection settings
@@ -59,3 +59,52 @@ To get a local copy up and running follow these steps.
 ## Tests
 
 - Right-click the test folder and choose Run tests with coverage
+
+## Proyect Structure
+
+### Configuration Layer
+
+It is the outermost layer and is responsible for configuration, class assignment, dependency injection, exception usage and bean configurations.
+
+### Adapters Layer
+
+This layer contains two layers: the driven layer and the driven layer, which are responsible for all reception and adaptation by the client or server.
+
+#### Drivin Layer
+
+It is the user's entry point when connecting to the application, it allows the user to interact with the api.
+
+### Domain Layer
+
+It is the most internal module of the architecture, it belongs to the domain layer and encapsulates the business logic and rules.
+
+## Entry Points
+
+### Order Controller
+
+- Create a new order
+```json
+{
+  "dishType": "string",
+  "grams": 0,
+  "companion": "string",
+  "dessertType": "string",
+  "topping": "string",
+  "flavor": "string"
+}
+```
+- create a new list of orders
+```json
+{
+  "orders": [
+    {
+      "dishType": "string",
+      "grams": 0,
+      "companion": "string",
+      "dessertType": "string",
+      "topping": "string",
+      "flavor": "string"
+    }
+  ]
+}
+```
