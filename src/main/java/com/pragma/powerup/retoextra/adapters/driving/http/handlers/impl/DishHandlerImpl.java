@@ -1,6 +1,7 @@
 package com.pragma.powerup.retoextra.adapters.driving.http.handlers.impl;
 
 import com.pragma.powerup.retoextra.adapters.driving.http.dto.request.OrderRequestDto;
+import com.pragma.powerup.retoextra.adapters.driving.http.dto.request.OrdersRequestDto;
 import com.pragma.powerup.retoextra.adapters.driving.http.handlers.IDishHandler;
 import com.pragma.powerup.retoextra.adapters.driving.http.mapper.IDishRequestMapper;
 import com.pragma.powerup.retoextra.domain.api.IDishServicePort;
@@ -15,5 +16,10 @@ public class DishHandlerImpl implements IDishHandler {
     @Override
     public void saveDish(OrderRequestDto orderRequestDto) {
         dishServicePort.saveDish(dishRequestMapper.toDish(orderRequestDto));
+    }
+
+    @Override
+    public void saveDishes(OrdersRequestDto ordersRequestDto) {
+        dishServicePort.saveDishes(dishRequestMapper.toDishes(ordersRequestDto.getOrders()));
     }
 }

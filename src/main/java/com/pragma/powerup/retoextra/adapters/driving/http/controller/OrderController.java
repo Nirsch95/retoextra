@@ -2,6 +2,7 @@ package com.pragma.powerup.retoextra.adapters.driving.http.controller;
 
 
 import com.pragma.powerup.retoextra.adapters.driving.http.dto.request.OrderRequestDto;
+import com.pragma.powerup.retoextra.adapters.driving.http.dto.request.OrdersRequestDto;
 import com.pragma.powerup.retoextra.adapters.driving.http.handlers.IDishHandler;
 import com.pragma.powerup.retoextra.configuration.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,5 +33,17 @@ public class OrderController {
         dishHandler.saveDish(orderRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.DISH_CREATED_MESSAGE));
+    }
+
+    @Operation(summary = "Add a new List of Dish",
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Dish created",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Map"))),
+            })
+    @PostMapping("/addOrders")
+    public ResponseEntity<Map<String, String>> addOrders(@RequestBody OrdersRequestDto ordersRequestDto){
+        dishHandler.saveDishes(ordersRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.DISHES_CREATED_MESSAGE));
     }
 }
