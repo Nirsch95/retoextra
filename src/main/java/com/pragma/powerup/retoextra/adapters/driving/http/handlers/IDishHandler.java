@@ -2,10 +2,8 @@ package com.pragma.powerup.retoextra.adapters.driving.http.handlers;
 
 import com.pragma.powerup.retoextra.adapters.driving.http.dto.request.OrderRequestDto;
 import com.pragma.powerup.retoextra.adapters.driving.http.dto.request.OrdersRequestDto;
-import com.pragma.powerup.retoextra.adapters.driving.http.dto.response.OrderResponseDto;
 import com.pragma.powerup.retoextra.domain.model.Dish;
 
-import java.util.List;
 import java.util.Queue;
 
 public interface IDishHandler {
@@ -13,5 +11,4 @@ public interface IDishHandler {
     void saveDishes(OrdersRequestDto ordersRequestDto);
     Dish getTakeOrder();
     Queue<Dish> getPendingDishes();
-    List<OrderResponseDto> mapToOrderResponseList(Queue<Dish> dishes);
 }
