@@ -30,27 +30,47 @@ public class DishEntityMapperImpl implements IDishEntityMapper {
 
         dishEntity.setId(dish.getId());
         dishEntity.setDishType(dish.getDishType());
+        dishEntity.setPriority(dish.getPriority());
 
         return dishEntity;
     }
 
+    @Override
+    public Dish toDish(DishEntity dishEntity) {
+        Dish dish;
+        if (dishEntity instanceof MeatEntity) {
+            MeatEntity meatEntity = (MeatEntity) dishEntity;
+            dish = new Meat(meatEntity.getId(), meatEntity.getDishType(), meatEntity.getPriority(), meatEntity.getGrams());
+        } else if (dishEntity instanceof SoupEntity) {
+            SoupEntity soupEntity = (SoupEntity) dishEntity;
+            dish = new Soup(soupEntity.getId(), soupEntity.getDishType(), soupEntity.getPriority(), soupEntity.getCompanion());
+        } else if (dishEntity instanceof FlanEntity) {
+            FlanEntity flanEntity = (FlanEntity) dishEntity;
+            dish = new Flan(flanEntity.getId(), flanEntity.getDishType(), flanEntity.getPriority(), flanEntity.getTypeDessert(), flanEntity.getTopping());
+        } else if (dishEntity instanceof IceCreamEntity) {
+            IceCreamEntity iceCreamEntity = (IceCreamEntity) dishEntity;
+            dish = new IceCream(iceCreamEntity.getId(), iceCreamEntity.getDishType(), iceCreamEntity.getPriority(), iceCreamEntity.getTypeDessert(), iceCreamEntity.getFlavor());
+        } else {
+            throw new IllegalArgumentException("Invalid dish entity type");
+        }
+
+        return dish;
+    }
+
     private MeatEntity toMeatEntity(Meat meat) {
         MeatEntity meatEntity = new MeatEntity();
-        // asignar las propiedades específicas de MeatEntity
         meatEntity.setGrams(meat.getGrams());
         return meatEntity;
     }
 
     private SoupEntity toSoupEntity(Soup soup) {
         SoupEntity soupEntity = new SoupEntity();
-        // asignar las propiedades específicas de SoupEntity
         soupEntity.setCompanion(soup.getCompanion());
         return soupEntity;
     }
 
     private FlanEntity toFlanEntity(Flan flan) {
         FlanEntity flanEntity = new FlanEntity();
-        // asignar las propiedades específicas de FlanEntity
         flanEntity.setTypeDessert(flan.getTypeDessert());
         flanEntity.setTopping(flan.getTopping());
         return flanEntity;
@@ -58,7 +78,6 @@ public class DishEntityMapperImpl implements IDishEntityMapper {
 
     private IceCreamEntity toIceCreamEntity(IceCream iceCream) {
         IceCreamEntity iceCreamEntity = new IceCreamEntity();
-        // asignar las propiedades específicas de IceCreamEntity
         iceCreamEntity.setTypeDessert(iceCream.getTypeDessert());
         iceCreamEntity.setFlavor(iceCream.getFlavor());
         return iceCreamEntity;

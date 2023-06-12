@@ -7,8 +7,8 @@ public class Soup extends Dish {
         super();
     }
 
-    public Soup(Long id, String dishType, String companion) {
-        super(id, dishType);
+    public Soup(Long id, String dishType, Integer priority, String companion) {
+        super(id, dishType, priority);
         this.companion = companion;
     }
 

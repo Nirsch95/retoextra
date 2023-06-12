@@ -7,8 +7,8 @@ public class Flan extends Dessert {
         super();
     }
 
-    public Flan(Long id, String dishType, String typeDessert, String topping) {
-        super(id, dishType, typeDessert);
+    public Flan(Long id, String dishType, Integer priority, String typeDessert, String topping) {
+        super(id, dishType, priority, typeDessert);
         this.topping = topping;
     }
 

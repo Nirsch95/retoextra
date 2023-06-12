@@ -7,8 +7,8 @@ public class Meat extends Dish {
         super();
     }
 
-    public Meat(Long id, String dishType, Integer grams) {
-        super(id, dishType);
+    public Meat(Long id, String dishType, Integer priority, Integer grams) {
+        super(id, dishType, priority);
         this.grams = grams;
     }
 

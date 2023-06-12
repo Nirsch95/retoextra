@@ -6,4 +6,5 @@ import com.pragma.powerup.retoextra.domain.model.Dish;
 
 public interface IDishEntityMapper {
     DishEntity toEntity(Dish dish);
+    Dish toDish(DishEntity dishEntity);
 }

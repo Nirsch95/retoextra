@@ -7,8 +7,8 @@ public class IceCream extends Dessert{
         super();
     }
 
-    public IceCream(Long id, String dishType, String typeDessert, String flavor) {
-        super(id, dishType, typeDessert);
+    public IceCream(Long id, String dishType, Integer priority, String typeDessert, String flavor) {
+        super(id, dishType, priority, typeDessert);
         this.flavor = flavor;
     }
 

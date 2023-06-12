@@ -19,5 +19,6 @@ public class DishEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String dishType;
+    private Integer priority;
 }
 
