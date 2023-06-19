@@ -19,32 +19,12 @@ public class DishMysqlAdapter implements IDishPersistencePort {
 
     @Override
     public void saveDish(Dish dish) {
-        if (dish.getPriority() == null) {
-            if (dish instanceof Meat) {
-                dish.setPriority(((Meat) dish).getGrams());
-            } else if (dish instanceof Soup) {
-                String companion = ((Soup) dish).getCompanion();
-                if (companion.equalsIgnoreCase("yuca")) {
-                    dish.setPriority(5);
-                } else if (companion.equalsIgnoreCase("papa")) {
-                    dish.setPriority(4);
-                } else if (companion.equalsIgnoreCase("arroz")) {
-                    dish.setPriority(3);
-                }
-            } else if (dish instanceof Flan) {
-                dish.setPriority(2);
-            } else if (dish instanceof IceCream) {
-                dish.setPriority(1);
-            }
-        }
         dishRepository.save(dishEntityMapper.toEntity(dish));
     }
 
     @Override
     public Queue<Dish> getPendingDishes() {
-        if (dishQueue == null) {
-            dishQueue = createDishQueue();
-        }
+        dishQueue = createDishQueue();
         return dishQueue;
     }
 
