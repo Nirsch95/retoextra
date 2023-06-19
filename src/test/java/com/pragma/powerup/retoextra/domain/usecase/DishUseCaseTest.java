@@ -8,10 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -75,15 +72,20 @@ class DishUseCaseTest {
     void getTakeOrder() {
         // Arrange
         Dish expectedDish = new Dish(1L, "sopa", 2);
-        when(dishPersistencePort.getTakeOrder()).thenReturn(expectedDish);
+        List<Dish> dishList = new ArrayList<>();
+        dishList.add(expectedDish);
+        Queue<Dish> expected = new PriorityQueue<>(dishList);
+        when(dishPersistencePort.getPendingDishes()).thenReturn(expected);
+        doNothing().when(dishPersistencePort).deleteDish(expectedDish);
 
         // Act
         Dish result = dishUseCase.getTakeOrder();
 
         // Assert
-        assertEquals(expectedDish.getId(), result.getId());
-        assertEquals(expectedDish.getDishType(), result.getDishType());
-        assertEquals(expectedDish.getPriority(), result.getPriority());
-        verify(dishPersistencePort, times(1)).getTakeOrder();
+        assertEquals(expected.peek().getId(), result.getId());
+        assertEquals(expected.peek().getDishType(), result.getDishType());
+        assertEquals(expected.peek().getPriority(), result.getPriority());
+        verify(dishPersistencePort, times(1)).getPendingDishes();
+        verify(dishPersistencePort, times(1)).deleteDish(expectedDish);
     }
 }
