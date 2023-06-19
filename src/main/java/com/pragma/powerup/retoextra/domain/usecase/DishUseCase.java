@@ -52,6 +52,12 @@ public class DishUseCase implements IDishServicePort {
 
     @Override
     public Dish getTakeOrder() {
-        return dishPersistencePort.getTakeOrder();
+        Queue<Dish> pedingDishes = dishPersistencePort.getPendingDishes();
+        if (pedingDishes.isEmpty()){
+            return new Dish();
+        }
+        Dish dishPriority = pedingDishes.poll();
+        dishPersistencePort.deleteDish(dishPriority);
+        return dishPriority;
     }
 }

@@ -7,5 +7,5 @@ import java.util.Queue;
 public interface IDishPersistencePort {
     void saveDish(Dish dish);
     Queue<Dish> getPendingDishes();
-    Dish getTakeOrder();
+    void deleteDish(Dish dish);
 }

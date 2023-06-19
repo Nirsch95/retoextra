@@ -23,20 +23,14 @@ public class DishMysqlAdapter implements IDishPersistencePort {
     }
 
     @Override
-    public Queue<Dish> getPendingDishes() {
-        dishQueue = createDishQueue();
-        return dishQueue;
+    public void deleteDish(Dish dish){
+        dishRepository.deleteById(dish.getId());
     }
 
     @Override
-    public Dish getTakeOrder() {
-        Queue<Dish> pendingDishes = getPendingDishes();
-        if(pendingDishes.isEmpty()){
-            return new Dish();
-        }
-        Dish dishPriority = pendingDishes.poll();
-        dishRepository.deleteById(dishPriority.getId());
-        return dishPriority;
+    public Queue<Dish> getPendingDishes() {
+        dishQueue = createDishQueue();
+        return dishQueue;
     }
 
     private Queue<Dish> createDishQueue() {
